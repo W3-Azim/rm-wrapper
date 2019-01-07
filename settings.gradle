@@ -1,4 +1,4 @@
-include ':viper', ':rightmeshsample'
+include ':viper'
 pluginManagement.repositories {
     google()
     jcenter()
