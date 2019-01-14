@@ -20,4 +20,4 @@ before_script:
     -Prightmesh_build_password=${rightmesh_build_password}"
   - chmod +x ./gradlew
 
-script: ./gradlew build
+script: ./gradlew build $PROPERTIES
