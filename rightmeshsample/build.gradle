@@ -72,9 +72,9 @@ dependencies {
 //right-mesh config start
 //to load rm username and password from gradle properties file
 rightmesh {
-    appKey = artifactory_app_key
     username = rightmesh_build_username
     password = rightmesh_build_password
+    appKey = artifactory_app_key
 }
 
 preBuild.dependsOn("rightmesh")
