@@ -3,9 +3,7 @@
     package="com.w3engineers.ext.viper">
 
     <!--to use separate Application class for separate build-->
-    <application
-        tools:replace="android:name"
-        android:name=".App">
+    <application>
     </application>
 
 </manifest>
