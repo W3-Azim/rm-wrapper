@@ -18,7 +18,7 @@ before_script:
   - yes | sdkmanager "platforms;android-28"
   - export GRADLE_USER_HOME=$(pwd)/.gradle
   - export PROPERTIES="
-    -Porg.w3.telemesh=${org.w3.telemesh}
+    -Porg.w3.telemesh=${artifactory_app_key}
     -Prightmesh_build_username=${rightmesh_build_username}
     -Prightmesh_build_password=${rightmesh_build_password}"
   - chmod +x ./gradlew
