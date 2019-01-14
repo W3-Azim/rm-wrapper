@@ -1,5 +1,7 @@
 ext {
 
+    rm_ssid = ''
+    rm_super_peer = ''
     if(project.rootProject.file('local.properties').exists()) {
         Properties localProperties = new Properties()
         localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
