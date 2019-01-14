@@ -74,7 +74,7 @@ dependencies {
 rightmesh {
     username = rightmesh_build_username
     password = rightmesh_build_password
-    appKey = artifactory_app_key
+    appKey = project.getProperty('org.w3.telemesh')
 }
 
 preBuild.dependsOn("rightmesh")
