@@ -1,0 +1,104 @@
+plugins {
+    id 'com.android.application'
+    id 'io.left.rightmesh.rightmesh-plugin' version '1.8.4'
+}
+
+android {
+    compileSdkVersion build_versions.target_sdk
+
+
+
+    defaultConfig {
+        applicationId "io.left.core.rmsample"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode vCode()
+        versionName vName
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+
+    //Support
+    implementation deps.support.app_compat
+    implementation deps.constraint_layout
+    implementation deps.support.recyclerview
+
+    //lifecycle
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    annotationProcessor deps.lifecycle.compiler
+
+    //LiveDataReactStream
+    implementation deps.livedata_reactive
+
+    // Dependencies for local unit tests
+    testImplementation deps.junit
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
+
+    //RightMesh
+    implementation deps.right_mesh
+
+    //gson
+    implementation deps.retrofit.gson
+
+    //framework
+    api deps.framework
+}
+//configuration end
+
+//todo will put in framework layer
+//right-mesh config start
+//to load rm username and password from gradle properties file
+rightmesh {
+    appKey = artifactory_app_key
+    username = rightmesh_build_username
+    password = rightmesh_build_password
+}
+
+preBuild.dependsOn("rightmesh")
+
+repositories {
+    maven {
+        url "http://artifactory.rightmesh.io/artifactory/maven"
+        credentials {
+            username rightmesh_build_username
+            password rightmesh_build_password
+        }
+    }
+    maven{
+        url "https://dl.bintray.com/ethereum/maven/"
+    }
+    mavenCentral()
+    jcenter()
+
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+//right-mesh config end
