@@ -14,6 +14,35 @@ if(isCrashLyticsEnabled) {
     apply plugin: 'io.fabric'
 }
 
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+
+    bintrayRepo = "viper"
+    bintrayName = "com.w3engineers.ext.viper"
+
+    publishedGroupId = 'com.w3engineers.ext.viper'
+    libraryName = 'viper'
+    artifact = 'viper'
+
+    libraryDescription = 'viper dependency'
+
+    siteUrl = 'https://github.com/W3-Azim/rm-wrapper'
+    gitUrl = 'https://github.com/W3-Azim/rm-wrapper.git'
+
+    libraryVersion = '0.0.9'
+
+    developerId = 'azim'
+    developerName = 'Azim Aman'
+    developerEmail = 'azim@w3engineers.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
 
 //right-mesh config start
 
@@ -93,7 +122,7 @@ dependencies {
     implementation deps.lifecycle.extensions
 
     //android-framework
-    api deps.framework_remote
+    api deps.strom_remote
 }
 
 //Utility
@@ -141,9 +170,18 @@ dependencies {
 }
 
 //Will port to a separate file, may be in plugin
-task javadoc(type: Javadoc) {
+/*task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     destinationDir = file("../javadoc/")
     failOnError false
+}*/
+
+
+
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/install.gradle'
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/bintray.gradle'
 }
