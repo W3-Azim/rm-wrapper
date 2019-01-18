@@ -31,7 +31,7 @@ ext {
     siteUrl = 'https://github.com/W3-Azim/rm-wrapper'
     gitUrl = 'https://github.com/W3-Azim/rm-wrapper.git'
 
-    libraryVersion = '0.0.9'
+    libraryVersion = vName
 
     developerId = 'azim'
     developerName = 'Azim Aman'
@@ -92,9 +92,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    dataBinding {
-        enabled = true
     }
     sourceSets {
         main.java.srcDirs += 'src/release/java'
